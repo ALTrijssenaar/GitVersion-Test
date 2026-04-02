@@ -1,0 +1,28 @@
+{
+  "name": "gitversion-test",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:1-8.0-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/powershell:1": {}
+  },
+  "remoteUser": "vscode",
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/home/vscode/.dotnet/tools"
+  },
+  "postCreateCommand": "pwsh -NoLogo -NoProfile -File .devcontainer/postCreate.ps1",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "pwsh",
+        "terminal.integrated.profiles.linux": {
+          "pwsh": {
+            "path": "/usr/bin/pwsh"
+          }
+        }
+      },
+      "extensions": [
+        "ms-dotnettools.csharp",
+        "ms-vscode.powershell"
+      ]
+    }
+  }
+}

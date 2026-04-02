@@ -1,0 +1,53 @@
+workflow: GitHubFlow/v1
+
+mode: ContinuousDelivery
+tag-prefix: '[vV]?'
+update-build-number: true
+semantic-version-format: Strict
+
+commit-message-incrementing: MergeMessageOnly
+major-version-bump-message: '\+semver:\s?(breaking|major)'
+minor-version-bump-message: '\+semver:\s?(feature|minor)'
+patch-version-bump-message: '\+semver:\s?(fix|patch)'
+no-bump-message: '\+semver:\s?(none|skip)'
+
+branches:
+  main:
+    regex: ^main$
+    label: 'alpha'
+    increment: Minor
+    is-main-branch: true
+    mode: ContinuousDelivery
+    prevent-increment:
+      of-merged-branch: false
+      when-branch-merged: false
+      when-current-commit-tagged: true
+
+  feature:
+    regex: ^features?[\/-](?<BranchName>.+)$
+    label: '{BranchName}'
+    increment: Inherit
+    source-branches:
+      - main
+      - release
+    prevent-increment:
+      when-current-commit-tagged: true
+
+  release:
+    regex: ^releases?[\/-]v?(?<Major>\d+)\.(?<Minor>\d+)$
+    label: 'beta'
+    increment: Patch
+    is-release-branch: true
+    mode: ContinuousDelivery
+    source-branches:
+      - main
+      - feature
+    track-merge-target: false
+    tracks-release-branches: false
+    prevent-increment:
+      of-merged-branch: false
+      when-branch-merged: false
+      when-current-commit-tagged: true
+
+ignore:
+  sha: []

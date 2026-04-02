@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "PowerShell: Run RUNME.ps1",
+      "type": "PowerShell",
+      "request": "launch",
+      "script": "${workspaceFolder}/RUNME.ps1",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}
