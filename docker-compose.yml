@@ -1,0 +1,5 @@
+services:
+  gitversion-test:
+    build:
+      context: .
+      dockerfile: Dockerfile

@@ -16,6 +16,27 @@ Tests/
 RUNME.ps1                     Built-in example scenarios
 ```
 
+## Using Docker
+
+Run the built-in scenarios directly from a Docker container — no local tool
+installation needed.
+
+Build the image and run the tests in one step:
+
+```bash
+docker compose run --rm gitversion-test
+```
+
+Or with plain Docker:
+
+```bash
+docker build -t gitversion-test .
+docker run --rm gitversion-test
+```
+
+The container installs .NET SDK, PowerShell 7, Git, GitVersion CLI, and
+Pester 5 during the image build, then executes `RUNME.ps1` on startup. 🐳
+
 ## Using the Dev Container
 
 Use the included dev container. That is the preferred workflow and avoids local
