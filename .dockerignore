@@ -1,0 +1,13 @@
+# Exclude the real git history; the Dockerfile bootstraps a fresh repo
+.git
+
+# Dev-container and editor files are not needed inside the image
+.devcontainer
+.vscode
+.github
+
+# Pester runtime cache
+.pester/runtime/
+
+# Test sandbox artifacts
+Sandbox
